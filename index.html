@@ -3,240 +3,369 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alish Panjvani | Modern Portfolio</title>
+    <title>Alish Panjvani | IT & Security Specialist</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide-react/0.263.1/lucide-react.min.js"></script>
 
     <style>
         :root {
-            /* Clean Modern Theme Variables */
-            --bg: #f7f7f7; /* Very Light Gray Background */
-            --text: #333333; /* Dark Gray Text */
-            --primary: #00897b; /* Teal/Deep Green Accent */
-            --secondary: #e0f2f1; /* Light Teal/Green for cards */
-            --card: #ffffff; /* White Card Background */
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* Sophisticated Modern Palette */
+            --bg: #0f172a; /* Deep Slate Blue/Black */
+            --surface: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --primary: #2dd4bf; /* Teal/Cyan */
+            --primary-hover: #14b8a6;
+            --accent: #818cf8; /* Indigo */
+            --glass-border: rgba(255, 255, 255, 0.1);
             --font: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
             font-family: var(--font);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* --- Global Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Apply slideInUp to all sections on load */
-        .section, header {
-            animation: slideInUp 0.8s ease-out forwards;
-        }
-        .section {
-            animation-delay: 0.2s; /* Stagger sections */
-        }
-        
-        /* --- Header & Hero Section --- */
-        header {
-            background: linear-gradient(135deg, var(--secondary), #b2dfdb);
-            padding: 80px 40px;
-            text-align: left;
-            overflow: hidden;
-            border-bottom: 5px solid var(--primary);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        .hero-container {
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(45, 212, 191, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(45, 212, 191, 0.4); }
+        }
+
+        /* --- Navigation --- */
+        nav.sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 40px;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .hero-content {
-            flex-grow: 1;
-            max-width: 600px;
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
         }
 
-        .profile-pic-container {
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            padding: 160px 40px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .profile-pic-wrapper {
+            position: relative;
             flex-shrink: 0;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 6px solid var(--primary);
-            box-shadow: 0 0 0 10px rgba(0, 137, 123, 0.1);
-            transition: transform 0.4s ease;
         }
-        
-        /* Animation: Floating effect on the image */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+
         .profile-pic-container {
-            animation: float 4s ease-in-out infinite, fadeIn 1s ease-out 0.5s forwards;
-            opacity: 0; /* Start hidden for animation */
+            width: 280px;
+            height: 280px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            animation: float 6s ease-in-out infinite, pulse-glow 4s infinite;
+            background: var(--surface);
         }
 
         .profile-pic-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            filter: grayscale(20%);
+            transition: var(--transition);
         }
 
-        h1 {
-            font-size: 52px;
-            margin: 0 0 5px;
-            color: var(--primary);
+        .profile-pic-container:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin: 0;
+            line-height: 1.1;
             font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
-            font-size: 20px;
-            color: var(--text);
-            opacity: 0.8;
-            margin-bottom: 30px;
+        .hero-content .role {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin: 15px 0;
             font-weight: 600;
         }
 
-        nav {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
+        .hero-content .bio {
+            color: var(--text-secondary);
+            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 700;
-            padding: 10px 22px;
-            border-radius: 5px;
-            border: 2px solid var(--primary);
-            transition: 0.3s ease;
-        }
-
-        nav a:hover {
-            background: var(--primary);
-            color: var(--card);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 137, 123, 0.4);
-        }
-
-        /* --- Main Content Sections --- */
+        /* --- Common Section Styling --- */
         main {
-            padding: 20px 40px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 0 40px;
         }
-        
+
         .section {
-            margin: 50px 0;
-            padding: 40px;
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            opacity: 0; /* Start hidden for slideInUp animation */
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
         }
-        
-        .section:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transform: translateY(-3px);
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
-            color: var(--primary);
-            font-size: 32px;
-            margin-bottom: 25px;
-            border-left: 5px solid var(--primary);
-            padding-left: 15px;
-            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* --- List/Card Styling (Experience, Skills, Contact) --- */
-        ul {
-            list-style: none;
-            padding: 0;
-            display: grid; 
+        h2::after {
+            content: "";
+            height: 1px;
+            background: var(--glass-border);
+            flex-grow: 1;
+        }
+
+        /* --- Experience Cards --- */
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            background: rgba(45, 212, 191, 0.05);
+            border-color: rgba(45, 212, 191, 0.3);
+        }
+
+        .card:hover::before {
+            height: 100%;
+        }
+
+        .card h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .card .company {
+            display: block;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 5px 0 15px;
+        }
+
+        .card .date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* --- Skills Grid --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        
-        /* Specific Grid Layouts */
-        #skills ul {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-        #contact ul {
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
         }
 
-        ul li {
-            padding: 18px;
-            border-radius: 8px;
-            background: var(--secondary);
-            transition: 0.3s ease;
-            border: 1px solid rgba(0, 137, 123, 0.2);
+        .skill-category h4 {
+            margin-top: 0;
+            color: var(--accent);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        ul li:hover {
-            background: #c3e8e6;
-            transform: scale(1.02);
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        strong {
+        .tag {
+            background: rgba(45, 212, 191, 0.1);
             color: var(--primary);
-            font-size: 1.1em;
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: var(--bg);
+            transform: scale(1.05);
+        }
+
+        /* --- Contact --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--surface);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .contact-link i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 30px;
-            font-size: 14px;
-            color: #777;
-            border-top: 1px solid #ddd;
-            margin-top: 50px;
-            background: var(--card);
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
         }
 
-        /* --- Responsive Adjustments (The Picture side placement) --- */
+        /* --- Mobile Responsiveness --- */
         @media (max-width: 900px) {
             .hero-container {
-                flex-direction: column; /* Stack image and content */
+                flex-direction: column;
                 text-align: center;
             }
-            .hero-content {
-                order: 2; /* Put content below the image on mobile */
-                max-width: none;
-            }
             .profile-pic-container {
-                order: 1; /* Put image first */
-                margin-bottom: 40px;
+                width: 220px;
+                height: 220px;
             }
-            h1 {
-                font-size: 40px;
+            .nav-links {
+                display: none; /* Mobile menu can be added later */
             }
-            nav {
-                justify-content: center;
-            }
-            main {
-                padding: 20px;
+            header {
+                padding-top: 120px;
             }
         }
     </style>
@@ -244,27 +373,38 @@
 
 <body>
 
+<nav class="sticky-nav">
+    <div class="nav-container">
+        <a href="#" class="logo">ALISH.P</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
 <header>
     <div class="hero-container">
-        <div class="profile-pic-container">
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQH9LrdZKd_s6A/profile-displayphoto-shrink_200_200/B56ZdaeOl3GoAY-/0/1749569564761?e=1766620800&v=beta&t=_JyQ-Qyw7KFo-m3P1TDrEEhHe_sR_eX9C3sCM8B1578" alt="Alish Panjvani Profile" />
+        <div class="profile-pic-wrapper">
+            <div class="profile-pic-container">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQH9LrdZKd_s6A/profile-displayphoto-shrink_200_200/B56ZdaeOl3GoAY-/0/1749569564761?e=1766620800&v=beta&t=_JyQ-Qyw7KFo-m3P1TDrEEhHe_sR_eX9C3sCM8B1578" alt="Alish Panjvani" />
+            </div>
         </div>
 
         <div class="hero-content">
-            <p style="color: var(--primary); font-weight: 700;">HELLO, I'M</p>
+            <p style="color: var(--primary); font-weight: 700; margin-bottom: 0;">DEVELOPER & SECURITY ANALYST</p>
             <h1>Alish Panjvani</h1>
-            <p class="subtitle">Security Operations Specialist & US Retail Surveillance | BCA Student</p>
-            <p>
-                Bridging robust security practice with academic understanding in digital systems. I specialize in real-time monitoring,
-                proactive incident detection, and optimizing operational workflows for asset protection.
+            <p class="role">IT Infrastructure | AI Integration | Security Ops</p>
+            <p class="bio">
+                BCA Student bridging the gap between hardware infrastructure and software intelligence. 
+                Expert in real-time surveillance, backend operations, and digital growth strategies.
             </p>
-
-            <nav>
-                <a href="#about">About Me</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <div style="display: flex; gap: 15px; justify-content: flex-start;" class="hero-btns">
+                 <a href="#contact" style="background: var(--primary); color: var(--bg); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; transition: var(--transition);">Hire Me</a>
+                 <a href="#experience" style="border: 1px solid var(--primary); color: var(--primary); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; transition: var(--transition);">View Work</a>
+            </div>
         </div>
     </div>
 </header>
@@ -272,52 +412,125 @@
 <main>
     <div id="about" class="section">
         <h2>About Me</h2>
-        <p>
-            My professional path combines hands-on experience in high-stakes Security Operations with a formal education in Computer Applications.
-            I possess a strong foundation in handling surveillance technology and executing detailed incident reporting. My BCA studies ensure I remain
-            current with the theoretical underpinnings of technology and network architecture, preparing me for advanced roles in technical security.
-        </p>
+        <div class="card">
+            <p>
+                My professional journey is defined by a unique intersection of <strong>Security Operations</strong> and <strong>Modern IT Infrastructure</strong>. 
+                While pursuing my BCA, I have managed high-stakes surveillance for US-based retail environments and spearheaded IT transitions in the wealth advisory sector. 
+                I specialize in creating efficient workflows—whether through <strong>AI-driven infrastructure</strong>, robust <strong>Meta marketing campaigns</strong>, 
+                or secure <strong>backend management</strong>.
+            </p>
+        </div>
     </div>
 
     <div id="experience" class="section">
-        <h2>Professional Experience</h2>
-        <ul>
-            <li>
-                <strong>E-Sam – Security Operations Specialist</strong>
-                <p>2025 – Present | Expertise in continuous CCTV monitoring, real-time threat analysis, prompt incident escalation, and maintenance of comprehensive security logs.</p>
-            </li>
-            <li>
-                <strong>HRHNext – CARS24 Customer Service</strong>
-                <p>Focused on high-volume customer interaction, problem resolution, and maintaining detailed records to ensure high client satisfaction and operational efficiency.</p>
-            </li>
-        </ul>
+        <h2>Experience</h2>
+        <div class="experience-grid">
+            <div class="card">
+                <span class="date">Current</span>
+                <h3>IT & AI Infrastructure</h3>
+                <span class="company">E-Sam</span>
+                <p>Architecting digital foundations by integrating AI tools into daily workflows and managing scalable IT systems to support modern security and operational demands.</p>
+            </div>
+
+            <div class="card">
+                <span class="date">Current</span>
+                <h3>Business Operations (IT & Backend)</h3>
+                <span class="company">Vega Wealth Advisers</span>
+                <p>Leading backend operations and IT infrastructure. Responsible for streamlining business processes, managing financial data systems, and ensuring seamless digital connectivity.</p>
+            </div>
+
+            <div class="card">
+                <span class="date">Present</span>
+                <h3>Digital Strategist (Meta & Web)</h3>
+                <span class="company">Freelance / Internal Projects</span>
+                <p>Designing high-conversion landing pages and executing targeted Meta (Facebook/Instagram) ad campaigns to drive growth and brand visibility.</p>
+            </div>
+
+            <div class="card">
+                <span class="date">2025 - Present</span>
+                <h3>Security Operations Specialist</h3>
+                <span class="company">E-Sam</span>
+                <p>US Retail Surveillance: Specializing in real-time CCTV monitoring, threat detection, and rapid incident escalation for high-value asset protection.</p>
+            </div>
+        </div>
     </div>
 
     <div id="skills" class="section">
-        <h2>Technical & Core Skills</h2>
-        <ul>
-            <li><strong>Security Ops</strong><br>CCTV, Incident Management</li>
-            <li><strong>Surveillance</strong><br>Real-Time Monitoring</li>
-            <li><strong>Web Foundation</strong><br>HTML</li>
-            <li><strong>Productivity</strong><br>MS Office Suite</li>
-            <li><strong>Reporting</strong><br>Documentation & Logging</li>
-            <li><strong>Communication</strong><br>Professional & Clear</li>
-        </ul>
+        <h2>Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h4>Core Development</h4>
+                <div class="skill-tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">Web Design</span>
+                    <span class="tag">Backend Ops</span>
+                    <span class="tag">System Arch</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Security & IT</h4>
+                <div class="skill-tags">
+                    <span class="tag">CCTV Ops</span>
+                    <span class="tag">AI Integration</span>
+                    <span class="tag">Network Admin</span>
+                    <span class="tag">Incident Mgmt</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Growth & Ops</h4>
+                <div class="skill-tags">
+                    <span class="tag">Meta Campaigns</span>
+                    <span class="tag">Business Ops</span>
+                    <span class="tag">Client Support</span>
+                    <span class="tag">MS Office</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="contact" class="section">
-        <h2>Get In Touch</h2>
-        <ul>
-            <li><strong>Email</strong><br>alishpanjvani80@gmail.com</li>
-            <li><strong>LinkedIn</strong><br>linkedin.com/in/alishpanjvani</li>
-            <li><strong>Location</strong><br>Hyderabad, India</li>
-        </ul>
+        <h2>Let's Connect</h2>
+        <div class="contact-grid">
+            <a href="mailto:alishpanjvani80@gmail.com" class="contact-link">
+                <strong>Email</strong>
+                <span>alishpanjvani80@gmail.com</span>
+            </a>
+            <a href="https://linkedin.com/in/alishpanjvani" target="_blank" class="contact-link">
+                <strong>LinkedIn</strong>
+                <span>alishpanjvani</span>
+            </a>
+            <div class="contact-link" style="cursor: default;">
+                <strong>Location</strong>
+                <span>Hyderabad, India</span>
+            </div>
+        </div>
     </div>
 </main>
 
 <footer>
-    © 2025 Alish Panjvani | Designed with a Clean, Modern Aesthetic
+    <p>&copy; 2025 Alish Panjvani. Developed with Focus on Innovation.</p>
 </footer>
+
+<script>
+    // Reveal sections on scroll
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Simple interaction for mobile navigation could be added here
+</script>
 
 </body>
 </html>
